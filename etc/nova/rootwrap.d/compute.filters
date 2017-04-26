@@ -228,6 +228,7 @@ sg_scan: CommandFilter, sg_scan, root
 # nova/volume/encryptors/cryptsetup.py:
 # nova/volume/encryptors/luks.py:
 ln: RegExpFilter, ln, root, ln, --symbolic, --force, /dev/mapper/crypt-.+, .+
+ln2: RegExpFilter, ln, root, ln, --symbolic, --force, /dev/rbd.+, .+
 
 # nova/volume/encryptors.py:
 # nova/virt/libvirt/dmcrypt.py:
@@ -238,6 +239,10 @@ xenstore-read: CommandFilter, xenstore-read, root
 
 # nova/virt/libvirt/utils.py:
 rbd: CommandFilter, rbd, root
+
+# nova/virt/libvirt/driver.py:
+rm: RegExpFilter, rm, root, rm, /dev/rbd.*
+rm: RegExpFilter, rm, root, rm, -f, /dev/rbd.*
 
 # nova/virt/libvirt/utils.py: 'shred', '-n3', '-s%d' % volume_size, path
 shred: CommandFilter, shred, root
